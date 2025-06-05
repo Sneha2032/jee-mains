@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Main PYQ Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+</head>
+<body>
+   <div class="top-center-title">
+   <h1 id="topMainTitle">Physics PYQs</h1> 
+   <h2 id="topSubtitle">Chapter-wise collection of Physics PYQs</h2>
+</div>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                 <div class="header-title">
+    <img src="jee.png" alt="JEE Main Logo" class="jee-logo" />
+    <h1 style="display:inline; vertical-align:middle;">JEE Main</h1>
+    <p class="header-subtitle">2025 - 2009 | 173 Papers | 15825 Qs</p>
+</div>
+                <button class="theme-toggle btn btn--secondary" id="themeToggle">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+                <nav class="subject-nav">
+                    <div class="subject-section" data-subject="Physics">
+                        <button class="subject-button subject-button--physics active" data-subject="Physics">
+                            <span class="subject-icon">⚡</span>
+                            <span class="subject-name">Physics</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                    </div>
+                    <div class="subject-section" data-subject="Chemistry">
+                        <button class="subject-button subject-button--chemistry" data-subject="Chemistry">
+                            <span class="subject-icon">🧪</span>
+                            <span class="subject-name">Chemistry</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                    </div>
+                    <div class="subject-section" data-subject="Mathematics">
+                        <button class="subject-button subject-button--mathematics" data-subject="Mathematics">
+                            <span class="subject-icon">📐</span>
+                            <span class="subject-name">Mathematics</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- SUBJECT TITLE AND SUBTITLE ADDED HERE -->
+                <header class="content-header">
+    <span class="subject-icon" id="mainSubjectIcon">⚡</span>
+    <div>
+        <h2 id="mainSubjectTitle">Physics PYQs</h2>
+        <div class="content-subtitle" id="mainSubjectSubtitle">Chapter-wise Collection of Physics PYQs</div>
+    </div>
+</header>
+
+                <!-- END TITLE/SUBTITLE -->
+
+                <!-- Filter Controls -->
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <div class="filter-item">
+                            <label class="form-label">Class</label>
+                            <div class="multi-select-wrapper">
+                                <button class="multi-select-button" id="classButton">
+                                    <span class="selected-text">All Classes</span>
+                                    <span class="dropdown-arrow">▼</span>
+                                </button>
+                                <div class="multi-select-dropdown" id="classDropdown">
+                                    <div class="multi-select-option">
+                                        <input type="checkbox" id="class11" value="Class 11">
+                                        <label for="class11">Class 11</label>
+                                    </div>
+                                    <div class="multi-select-option">
+                                        <input type="checkbox" id="class12" value="Class 12">
+                                        <label for="class12">Class 12</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label">Units</label>
+                            <div class="multi-select-wrapper">
+                                <button class="multi-select-button" id="unitButton">
+                                    <span class="selected-text">All Units</span>
+                                    <span class="dropdown-arrow">▼</span>
+                                </button>
+                                <div class="multi-select-dropdown" id="unitDropdown">
+                                    <!-- Units will be populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label">Filters</label>
+                            <div class="toggle-filters">
+                                <button class="toggle-filter" id="notStartedFilter">
+                                    <span class="toggle-icon">⭕</span>
+                                    <span>Not Started</span>
+                                </button>
+                                <button class="toggle-filter" id="weakChapterFilter">
+                                    <span class="toggle-icon">⚠️</span>
+                                    <span>Weak Chapters</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="filter-item">
+                            <label class="form-label">Sort</label>
+                            <button class="sort-button" id="sortButton">
+                                <span class="sort-icon">↕️</span>
+                                <span class="sort-text">A-Z</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chapter Count -->
+                <div class="chapter-count">
+                    <span id="chapterCountText">Showing 0 chapters</span>
+                </div>
+                <!-- Chapter List -->
+                <div class="chapter-list" id="chapterList">
+                    <!-- Chapters will be populated dynamically -->
+                </div>
+
+                <!-- Chapter Detail Modal -->
+                <div class="chapter-modal" id="chapterModal">
+                    <div class="modal-overlay" id="modalOverlay"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modalTitle">Chapter Details</h3>
+                            <button class="modal-close" id="modalClose">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="chapter-info">
+                                <h4 id="modalChapterName">Chapter Name</h4>
+                                <div class="chapter-meta">
+                                    <span class="meta-item" id="modalClass"></span>
+                                    <span class="meta-item" id="modalUnit"></span>
+                                    <span class="meta-item" id="modalStatus"></span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="questionChart" width="400" height="200"></canvas>
+                            </div>
+                            <div class="progress-info">
+                                <div class="progress-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Total Questions</span>
+                                        <span class="stat-value" id="modalTotalQuestions">0</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Solved</span>
+                                        <span class="stat-value" id="modalSolvedQuestions">0</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Progress</span>
+                                        <span class="stat-value" id="modalProgress">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="app1.js"></script>
+</body>
+</html>
